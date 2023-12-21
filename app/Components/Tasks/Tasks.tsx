@@ -40,6 +40,7 @@ function Tasks({title, tasks}: Props) {
 }
 
 const TaskStyled = styled.main`
+    
     padding: 2rem;
     width: 100%;
     background-color: ${(props) => props.theme.colorBg2};
@@ -50,6 +51,10 @@ const TaskStyled = styled.main`
     overflow-y: auto;
     &::-webkit-scrollbar {
         width: 0.5rem;
+    }
+
+    .tasks{
+      margin: 2rem 0;
     }
 
     >h1{
