@@ -18,7 +18,7 @@ interface Props {
 
 function TaskItem({title, description, date, isCompleted, id} : Props) {
 
-  const {theme} = useGlobalState();
+  const {theme, deleteTask, updateTask} = useGlobalState();
   return ( 
   <TaskItemStyled theme={theme}>
     <h1>{title}</h1>
@@ -26,13 +26,33 @@ function TaskItem({title, description, date, isCompleted, id} : Props) {
     <p className='date'>{ formatDate(date) }</p>
     <div className="task-footer">
       {isCompleted ? ( 
-        <button className='completed'>Completed</button> ) : ( 
-        <button className='incomplete'>Incomplete</button>
+        <button 
+        className='completed' 
+        onClick={() => {
+          const task = {
+            id,
+            isCompleted: !isCompleted,
+          };
+          updateTask(task); 
+        }}
+        
+        >Completed</button> 
+        ) : ( 
+        <button className='incomplete'
+         onClick={() => {
+          const task = {
+            id,
+            isCompleted: !isCompleted,
+          };
+          updateTask(task); 
+        }}>Incomplete</button>
         )}
         <button className="edit">
           {edit}
         </button>
-        <button className="delete">
+        <button className="delete" onClick={() => {
+          deleteTask(id);
+        }} >
           {trash}
         </button>
     </div>
